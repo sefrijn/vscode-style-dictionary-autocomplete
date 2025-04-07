@@ -2,7 +2,8 @@
   "name": "style-dictionary-autocomplete",
   "displayName": "Style Dictionary Autocomplete",
   "description": "Scan a tokens folder to provide autocomplete for reference values",
-  "version": "0.0.1",
+  "version": "0.0.3",
+  "publisher": "sefrijn",
   "author": {
     "name": "Sefrijn Langen",
     "email": "info@howaboutyes.com",
@@ -12,6 +13,7 @@
     "type": "git",
     "url": "https://github.com/sefrijn/vscode-style-dictionary-autocomplete.git"
   },
+  "icon": "assets/logo.png",
   "license": "MIT",
   "keywords": [
     "style-dictionary",
@@ -24,7 +26,7 @@
   },
   "homepage": "https://howaboutyes.com",
   "engines": {
-    "vscode": "^1.98.0"
+    "vscode": "^1.96.0"
   },
   "categories": [
     "Other"
@@ -61,17 +63,17 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
+    "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
-    "@types/vscode": "^1.98.0",
+    "@types/vscode": "^1.96.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "@vscode/test-cli": "^0.0.10",
@@ -79,7 +81,6 @@
     "eslint": "^9.23.0",
     "typescript": "^5.8.2"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
   "dependencies": {
     "fast-glob": "^3.3.3"
   }
