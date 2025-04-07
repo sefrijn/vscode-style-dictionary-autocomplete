@@ -9,7 +9,6 @@ export class TokenParser {
 
   constructor() {
     this.tokensFolder = this.getTokensFolder();
-    console.log("Tokens folder:", this.tokensFolder);
     this.refreshTokens();
   }
 
@@ -47,7 +46,6 @@ export class TokenParser {
       try {
         const content = JSON.parse(fs.readFileSync(file, "utf8"));
         this.extractTokens(content);
-        console.log(`Parsed file: ${file}`);
       } catch (e) {
         console.error(`Failed to parse ${file}: ${e}`);
       }
@@ -63,7 +61,6 @@ export class TokenParser {
 
         if (typeof value === "object" && value !== null && "value" in value) {
           // Treat "value" as a terminal node
-          console.log(`Token found: ${newPrefix}`);
           this.tokens.push(newPrefix); // Add only the token value without {}
         } else if (typeof value === "object" && value !== null) {
           this.extractTokens(value, newPrefix);

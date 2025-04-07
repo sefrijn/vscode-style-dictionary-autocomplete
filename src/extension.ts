@@ -31,13 +31,14 @@ export function activate(context: vscode.ExtensionContext) {
           .trim();
 
         // Check if we're inside a token reference (e.g., '"value": {token...')
-        const match = linePrefix.match(/"value"\s*:\s*"\s*\{\s*([^}]*)$/);
+        const match = linePrefix.match(/"value"\s*:\s*\"\s*\{\s*([^}]*)$/);
         if (!match) {
           return undefined;
         }
 
         const typedText = match[1]; // Get the text after the opening brace
         const tokens = tokenParser.getTokens();
+        console.log("Typed text:", typedText);
 
         // Filter tokens based on the typed text
         const filteredTokens = tokens.filter((token) =>
@@ -50,15 +51,26 @@ export function activate(context: vscode.ExtensionContext) {
             token,
             vscode.CompletionItemKind.Value
           );
-          // item.insertText = token; // Insert the token directly
-          item.insertText = token.substring(typedText.length);
+
+          // Replace only the part of the text that matches the typedText
+          const start = position.character - typedText.length;
+          const range = new vscode.Range(
+            position.line,
+            start,
+            position.line,
+            position.character
+          );
+          item.range = range;
+
+          // Insert the full token
+          item.insertText = token;
+
           return item;
         });
 
-        return new vscode.CompletionList(items, true); // Set `isIncomplete` to true
+        return new vscode.CompletionList(items);
       },
     },
-    '"',
     "{" // Trigger on quote (after "value": ) or brace (for references)
   );
 

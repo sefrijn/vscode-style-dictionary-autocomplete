@@ -2,7 +2,7 @@
   "name": "style-dictionary-autocomplete",
   "displayName": "Style Dictionary Autocomplete",
   "description": "Scan a tokens folder to provide autocomplete for reference values",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "publisher": "sefrijn",
   "author": {
     "name": "Sefrijn Langen",
